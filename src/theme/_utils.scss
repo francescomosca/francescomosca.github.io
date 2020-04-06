@@ -4,6 +4,11 @@
   overflow-x: hidden;
 }
 
+.flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .flex-center {
   display: flex;
   align-items: center;
@@ -13,6 +18,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (max-width: 767px) { 
+  .flex-between {
+    flex-direction: column;
+    > *:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) { 
+  .row-md-reverse {
+    flex-direction: column-reverse;
+  }
 }
 
 .list-unstyled {
@@ -24,4 +43,34 @@
   >li {
     display: inline-block;
   }
+}
+
+//Utility per tabelle
+
+.fit-content {
+  width: 0.00001%;
+  white-space: nowrap;
+}
+
+.table-text-overflow {
+  flex: 1;
+  width: 1px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.break-word {
+  overflow-wrap: break-word;
+  word-break: break-all;
 }

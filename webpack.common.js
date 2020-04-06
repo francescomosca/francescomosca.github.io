@@ -5,9 +5,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const glob = require('glob')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin')
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
-  src: path.join(__dirname, 'src')
+  src: path.join(__dirname, 'src'),
+  style: path.resolve(__dirname, 'src', "style.scss"),
 }
 
 module.exports = {
@@ -17,9 +20,12 @@ module.exports = {
       _appRoot: path.join(PATHS.src, 'app'),
     }
   },
-  entry: PATHS.src + '/main.ts',
+  entry: {
+    main: PATHS.src + '/main.ts',
+    // criticalCss: PATHS.style, // this's a chunk, source from a file with my critical CSS I wanna inline!
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
@@ -42,11 +48,6 @@ module.exports = {
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader"
-      },
-      {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
@@ -56,14 +57,9 @@ module.exports = {
               hmr: process.env.NODE_ENV === 'development',
             },
           },
-          'css-loader',
+          "css-loader",
           'sass-loader',
         ],
-      },
-      /*
-            {
-        test: /\.json$/,
-        loader: 'json-loader'
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -86,14 +82,6 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'svg-url-loader',
-        query: {
-          limit: '10000',
-          mimetype: 'application/svg+xml'
-        }
-      },
-      {
         test: /\.(png|jpg)$/,
         loader: 'url-loader',
         query: {
@@ -103,23 +91,46 @@ module.exports = {
       {
         test: /\.ico(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader'
-      }
-      */
+      },
+
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'svg-url-loader',
+        query: {
+          limit: '10000',
+          mimetype: 'application/svg+xml'
+        }
+      }, 
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'assets/'
+            }
+        }]
+    },      
+      /* {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }, */
     ]
   },
 
 
   plugins: [
-    new ContextReplacementPlugin(/pages/, '*.controller.(ts|js)'),
+    // new ContextReplacementPlugin(/pages/, '*.controller.(ts|js)'),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      showErrors: true,
+      template: PATHS.src + '/index.html',
+      filename: './index.html', //relative to root of the application      showErrors: true,
       hash: true,
       minify: {
         removeComments: true,
       },
-      template: PATHS.src + '/index.html',
-      filename: './index.html' //relative to root of the application
+      favicon: PATHS.src + '/assets/favicon.ico',
+
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -129,21 +140,31 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
-    })
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+    }),
+    // new HTMLInlineCSSWebpackPlugin(),
+    new CopyWebpackPlugin([
+      {from:'src/assets',to:'assets'} 
+    ]), 
   ],
 
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      // chunks: 'all',
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
     },
   },
   // When importing a module whose path matches one of the following, just
   // assume a corresponding global variable exists and use that instead.
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
-  /* externals: {
-      "react": "React",
-      "react-dom": "ReactDOM"
-  } */
+  externals: {
+      // "ParticlesJs": "./node_modules/particles.js/particles.js"
+  }
 };
