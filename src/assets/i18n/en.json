@@ -1,0 +1,17 @@
+{
+	"links": {
+		"experiences": "Experiences",
+		"skills": "Skills",
+		"contact_me": "Contact Me"
+	},
+	"main": {
+		"title": "Hi,<br>I'm Frank!",
+		"subtitle": "I'm a mobile and web developer with an eye for graphics and design, and who loves to work using the best practices."
+	},
+	"experiences": {
+		"heading": {
+			"title": "Experiences",
+			"subtitle": "Project that I worked on"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"links": {
+		"experiences": "Esperienze",
+		"skills": "Competenze",
+		"contact_me": "Contatti"
+	},
+	"main": {
+		"title": "Ciao,<br>sono Frank!",
+		"subtitle": "Sono uno sviluppatore di applicazioni web e mobile, con un occhio grafico e una predisposizione alle best practices."
+	},
+	"experiences": {
+		"heading": {
+			"title": "Esperienze",
+			"subtitle": "Progetti su cui ho lavorato"
+		}
+	}
+}

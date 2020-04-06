@@ -109,8 +109,6 @@ hr {
     display: inline-block;
     position: relative;
 
-    
-
     a {
       color: var(--black);
       transition: width .5s ease, color .33s ease;
@@ -224,7 +222,7 @@ hr {
   .product-title-line {
     margin: .75rem 0 1rem 0;
     width: 50%;
-    height: 4px; 
+    height: 4px;
   }
 }
 
@@ -318,5 +316,18 @@ hr {
 @media screen and (max-width: 767px) {
   .copy-text {
     margin-bottom: 1rem;
+  }
+}
+
+[name="lang-selector"] {
+  &:not(.active) + img {
+    filter: grayscale(.75);
+    cursor: pointer;
+  }
+  &.loading + img {
+    transform: scale(.9);
+  }
+  + img {
+    transition: filter .1s ease, transform .25s ease;
   }
 }
