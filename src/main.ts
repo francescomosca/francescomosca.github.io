@@ -12,7 +12,10 @@ export class MainApp {
   ) {
     this.initTranslations();
 
-    sal({ once: true });
+    sal({ 
+      threshold: 0.4,
+      once: true 
+    });
 
     const rellax = new Rellax('.parallax', {
       speed: 1,
