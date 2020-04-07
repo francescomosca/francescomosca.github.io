@@ -3,6 +3,7 @@ import './style.scss';
 import { $, isDevMode } from './utils';
 import { TranslatorService } from "./services/translator.service";
 // import 'particles.js';
+import sal from 'sal.js';
 
 export class MainApp {
 
@@ -11,15 +12,18 @@ export class MainApp {
   ) {
     this.initTranslations();
 
-    // router.renderPage('main');
+    sal({
+      once: true,
+    });
 
     // console.log(particlesJsConfig);
     // window['particlesJS']('particles-js', particlesJsConfig);
+    // router.renderPage('main');
   }
 
-  initTranslations() {
+  async initTranslations() {
     // const browserLang = this.translatorServ.detectLanguage();
-    this.translatorServ.load('en');
+    await this.translatorServ.load('en');
 
     const langSel: HTMLInputElement[] = <any>document.querySelectorAll("[name=\"lang-selector\"]");
     console.log(langSel);

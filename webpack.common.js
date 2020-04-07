@@ -141,6 +141,7 @@ module.exports = {
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      whitelist: function() { return ['sal-animate']},
     }),
     // new HTMLInlineCSSWebpackPlugin(),
     new CopyWebpackPlugin([

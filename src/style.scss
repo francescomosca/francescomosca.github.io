@@ -13,5 +13,8 @@
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/utilities";
 
+// External libs
+@import '~sal.js/src/sal';
+
 @import 'theme/utils';
 @import 'theme/custom';

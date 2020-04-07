@@ -16,9 +16,9 @@
     </!--<style>-->
 </head>
 <body>
-    <section class="main-hero px-3">
+    <section class="main-hero px-3" data-sal="fade">
         <div class="container">
-            <header class="nav-header flex-between">
+            <header class="nav-header flex-between" data-sal="fade" data-sal-delay="200">
                 <div class="logo"></div>
                 <div>
                 <ul class="d-inline-block list-inline nav-links">
@@ -46,11 +46,11 @@
             </header>
 
             <div class="main-hero-content">
-                <h1 data-i18n="main.title">Hi,<br>I'm Frank!</h1>
-                <p class="subtitle my-4" data-i18n="main.subtitle">
+                <h1 data-i18n="main.title" data-sal="slide-up" data-sal-delay="150">Hi,<br>I'm Frank!</h1>
+                <p class="subtitle my-4" data-i18n="main.subtitle" data-sal="slide-up" data-sal-delay="400">
                     I'm a mobile and web developer with an eye for graphics and design, and who loves to work using the best practices.
                 </p>
-                <div class="social-btns">
+                <div class="social-btns" data-sal="fade" data-sal-delay="600">
                     <a href="https://www.linkedin.com/in/francesco-mosca/" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-linkedin fa-3x"></i>
                     </a>
@@ -69,26 +69,27 @@
     <section id="experiences">
 
         <div class="section-heading">
-            <h2 data-i18n="experiences.heading.title">Experiences</h2>
-            <p class="subtitle" data-i18n="experiences.heading.subtitle">Project that I worked on</p>
+            <h2 data-i18n="experiences.heading.title" data-sal="fade">Experiences</h2>
+            <p class="subtitle" data-i18n="experiences.heading.subtitle" data-sal="fade" data-sal-delay="200">Project that I worked on</p>
         </div>
 
         <div class="container">
 
             <!-- HAIR EXPRESS -->
-            <div class="row">
+            <div class="row pb-5">
                 <div class="col-md-5 offset-md-1 flex-center">
-                    <img class="product-photo" src="./assets/product-photos/hair-express.png" alt="">
+                    <img class="product-photo" src="./assets/product-photos/hair-express.png" alt="" data-sal="slide-right">
                 </div>
                 <div class="col-md-5 align-items-center">
 
-                    <div class="product-title">
+                    <div class="product-title" data-sal="fade">
                         <div>
                             <h3>Hair Express</h3>
-                            <div class="product-title-line" style="background-color: #EFCF63;"></div>
+                            <div class="product-title-line" style="background-color: #EFCF63;" data-sal="flip-up"></div>
                         </div>
                     </div>
 
+                    <div data-sal="fade" data-sal-delay="300">
                     <div class="chips-group">
                         <span class="chip-square">Backend</span>
                         <span class="chip-square">Frontend</span>
@@ -110,20 +111,22 @@
                         ▪ &nbsp; Google Firebase (phone sign-in,FCM)<br>
                         ▪ &nbsp; Adobe XD
                     </p>
+                    </div>
 
                 </div>
             </div>
 
             <!-- TBOXCHAIN -->
-            <div class="row row-md-reverse mt-5">
+            <div class="row row-md-reverse py-5">
                 <div class="col-md-5 offset-md-1">
-                    <div class="product-title">
+                    <div class="product-title" data-sal="fade">
                         <div>
                             <h3>TBoxChain</h3>
-                            <div class="product-title-line" style="background-color: #00C6DE;"></div>
+                            <div class="product-title-line" style="background-color: #00C6DE;" data-sal="flip-up"></div>
                         </div>
                     </div>
 
+                    <div data-sal="fade" data-sal-delay="300">
                     <span class="chip-square">Frontend</span>
 
                     <p class="product-description my-4" data-i18n="experiences.tboxchain.desc">Sistema di raccolta, certificazione e distribuzione di recensioni online strutturato su tecnologia blockchain, basato su due prove chiave: Proof of location e Proof of identity.</p>
@@ -137,25 +140,26 @@
                         ▪ &nbsp; Google Maps API
                     </p>
                 </div>
+                </div>
                 <div class="col-md-5 flex-center">
-                    <img class="product-photo" src="./assets/product-photos/tbox.png" alt="">
+                    <img class="product-photo" src="./assets/product-photos/tbox.png" alt="" data-sal="slide-left">
                 </div>
             </div>
 
             <!-- SMARTXP -->
-            <div class="row mt-5">
+            <div class="row pt-5">
                 <div class="col-md-5 offset-md-1 flex-center">
-                    <img class="product-photo" src="./assets/product-photos/smartxp.png" alt="">
+                    <img class="product-photo" src="./assets/product-photos/smartxp.png" alt="" data-sal="slide-up">
                 </div>
                 <div class="col-md-5 align-items-center">
 
-                    <div class="product-title">
+                    <div class="product-title" data-sal="fade">
                         <div>
                             <h3>SmartXP</h3>
-                            <div class="product-title-line" style="background-color: #EB443B;"></div>
+                            <div class="product-title-line" style="background-color: #EB443B;" data-sal="flip-up"></div>
                         </div>
                     </div>
-
+                    <div data-sal="fade" data-sal-delay="300">
                     <div class="chips-group">
                        <span class="chip-square">Frontend</span>
                         <span class="chip-square">Design</span>
@@ -172,7 +176,7 @@
                         ▪ &nbsp; Leaflet
                     </p>
 
-                </div>
+                </div></div>
             </div>
 
         </div>
@@ -182,8 +186,8 @@
     <section id="companies">
 
         <div class="section-heading">
-            <h2 data-i18n="companies.heading.title">Companies</h2>
-            <p class="subtitle" data-i18n="companies.heading.subtitle">Companies that I have worked with</p>
+            <h2 data-i18n="companies.heading.title" data-sal="fade">Companies</h2>
+            <p class="subtitle" data-i18n="companies.heading.subtitle" data-sal="fade" data-sal-delay="200">Companies that I have worked with</p>
         </div>
 
 
@@ -192,7 +196,7 @@
             <!-- HAIR EXPRESS -->
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <div class="companies-overwiew">
+                    <div class="companies-overwiew" data-sal="fade">
                         <img src="./assets/logos/3f-edin.png" alt="">
                         <img src="./assets/logos/innovaway.png" alt="">
                         <img src="./assets/logos/rgi.svg" alt="">
@@ -216,18 +220,18 @@
     </section>-->
 
     <section id="contact">
-        <div class="contact-card">
+        <div class="contact-card" data-sal="fade">
             <div class="row">
                 <div class="col-lg-4 flex-center">
-                    <img src="./assets/avatar.jpg" class="photo-avatar" alt="">
+                    <img src="./assets/avatar.jpg" class="photo-avatar" alt="Francesco Mosca" data-sal-delay="200" data-sal="zoom-in">
                 </div>
                 <div class="col-lg-8">
-                    <h2 data-i18n="contact.title">Contact me!</h2>
-                    <p class="subtitle my-4" data-i18n="contact.subtitle">
+                    <h2 data-i18n="contact.title" data-sal="slide-up" data-sal-delay="200">Contact me!</h2>
+                    <p class="subtitle my-4" data-i18n="contact.subtitle"  data-sal="slide-up" data-sal-delay="300">
                         Feel free to contact me. I'm available to discussions about your project or for a work proposal.
                     </p>
 
-                    <div class="social-btns">
+                    <div class="social-btns"  data-sal="fade" data-sal-delay="400">
                         <a href="https://www.linkedin.com/in/francesco-mosca/" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin fa-3x"></i>
                         </a>
