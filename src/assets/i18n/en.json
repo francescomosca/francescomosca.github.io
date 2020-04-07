@@ -12,6 +12,29 @@
 		"heading": {
 			"title": "Experiences",
 			"subtitle": "Project that I worked on"
+		},
+		"hair_express": {
+			"desc": "I entirely designed and worked on this hybrid mobile app for a growing hair salon."
+		},
+		"tools_title": "Technologies and tools used",
+		"tboxchain": {
+			"desc": "experiences.tboxchain.desc"
+		},
+		"smartxp": {
+			"desc": "experiences.smartxp.desc"
 		}
-	}
+	},
+	"companies": {
+		"heading": {
+			"title": "Companies",
+			"subtitle": "Companies that I have worked with"
+		}
+	},
+	"contact": {
+		"title": "Contact me!",
+		"subtitle": "Feel free to contact me. I'm available to discussions about your project or for a work proposal.",
+		"send_email": "send me an email"
+	},
+	"or": "or",
+	"null": "--"
 }

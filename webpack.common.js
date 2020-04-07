@@ -100,7 +100,7 @@ module.exports = {
           limit: '10000',
           mimetype: 'application/svg+xml'
         }
-      }, 
+      },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [{
@@ -110,7 +110,7 @@ module.exports = {
                 outputPath: 'assets/'
             }
         }]
-    },      
+    },
       /* {
         test: /\.json$/,
         loader: 'json-loader'
@@ -144,8 +144,8 @@ module.exports = {
     }),
     // new HTMLInlineCSSWebpackPlugin(),
     new CopyWebpackPlugin([
-      {from:'src/assets',to:'assets'} 
-    ]), 
+      {from:'src/assets',to:'assets'}
+    ]),
   ],
 
   optimization: {

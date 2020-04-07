@@ -12,6 +12,29 @@
 		"heading": {
 			"title": "Esperienze",
 			"subtitle": "Progetti su cui ho lavorato"
+		},
+		"hair_express": {
+			"desc": "Ho interamente progettato e lavorato su un app ibrida per un salone di parrucchieri."
+		},
+		"tools_title": "Tecnologie e strumenti utilizzati",
+		"tboxchain": {
+			"desc": "Sistema di raccolta, certificazione e distribuzione di recensioni online strutturato su tecnologia blockchain, basato su due prove chiave: Proof of location e Proof of identity."
+		},
+		"smartxp": {
+			"desc": "Una dashboard multi-aziendale per la gestione dei dati presenti nell'applicativo mobile di una compagnia sportiva."
 		}
-	}
+	},
+	"companies": {
+		"heading": {
+			"title": "Aziende",
+			"subtitle": "Aziende con cui ho lavorato"
+		}
+	},
+	"contact": {
+		"title": "Contattami",
+		"subtitle": "Non esitare a contattarmi. Sono disponibile a discutere del tuo progetto o di valutare un'offerta di lavoro.",
+		"send_email": "inviami un email"
+	},
+	"or": "o",
+	"null": "--"
 }

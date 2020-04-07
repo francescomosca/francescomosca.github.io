@@ -27,7 +27,7 @@ export class MainApp {
     for (const el of langSel) {
       if (el.value === 'en') el.classList.add('active');
       // langSel.value = browserLang;
-      el.addEventListener("change", (ev: any) => {
+      el.addEventListener("click", (ev: any) => {
         const newLang = ev.target.value;
         el.classList.add('loading');
         this.translatorServ.load(newLang)

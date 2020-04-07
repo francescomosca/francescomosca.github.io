@@ -4,6 +4,7 @@ export interface TranslatorConfig {
   defaultLanguage: string,
   detectLanguage: boolean,
   filesLocation: string,
+  attributeName: string
 }
 
 const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
@@ -12,6 +13,7 @@ const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
   defaultLanguage: "en",
   detectLanguage: true,
   filesLocation: "/assets/i18n",
+  attributeName: "data-i18n"
 };
 
 /** My updated version of simple-translator for TypeScript.
@@ -23,7 +25,7 @@ export class TranslatorService {
 
   constructor(private _options: TranslatorConfig = TRANSLATOR_DEFAULT_CONFIG) {
     this._options = { ...TRANSLATOR_DEFAULT_CONFIG, ..._options };
-    this._elements = document.querySelectorAll("[data-i18n]");
+    this._elements = document.querySelectorAll(`[${this._options.attributeName}]`);
 
     if (this._options.defaultLanguage) this._getResource(this._options.defaultLanguage);
   }
@@ -88,7 +90,7 @@ export class TranslatorService {
     if (!text && text !== '' && this._options.defaultLanguage) {
       let fallbackTranslation = JSON.parse(
         this._cache.get(this._options.defaultLanguage)
-      );
+        );
 
       text = this._getValueFromJSON(key, fallbackTranslation);
     }
