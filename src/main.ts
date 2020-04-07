@@ -2,7 +2,7 @@
 import './style.scss';
 import { $, isDevMode } from './utils';
 import { TranslatorService } from "./services/translator.service";
-// import 'particles.js';
+import Rellax from 'rellax';
 import sal from 'sal.js';
 
 export class MainApp {
@@ -12,8 +12,15 @@ export class MainApp {
   ) {
     this.initTranslations();
 
-    sal({
-      once: true,
+    sal({ once: true });
+
+    const rellax = new Rellax('.parallax', {
+      speed: 1,
+      center: false,
+      wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false
     });
 
     // console.log(particlesJsConfig);
@@ -23,16 +30,18 @@ export class MainApp {
 
   async initTranslations() {
     // const browserLang = this.translatorServ.detectLanguage();
-    await this.translatorServ.load('en');
+    const lang = localStorage.getItem('language') || 'en';
+    await this.translatorServ.load(lang);
 
     const langSel: HTMLInputElement[] = <any>document.querySelectorAll("[name=\"lang-selector\"]");
     console.log(langSel);
 
     for (const el of langSel) {
-      if (el.value === 'en') el.classList.add('active');
-      // langSel.value = browserLang;
-      el.addEventListener("click", (ev: any) => {
-        const newLang = ev.target.value;
+      if (el.value === lang) el.classList.add('active');
+
+      const eventHandler = (ev: MouseEvent | KeyboardEvent | Event) => {
+        // if ((<KeyboardEvent>ev).keyCode && (<KeyboardEvent>ev).keyCode == 32) ev.preventDefault();
+        const newLang = (<any>ev).target.value;
         el.classList.add('loading');
         this.translatorServ.load(newLang)
           .then(() => {
@@ -40,7 +49,12 @@ export class MainApp {
             el.classList.add('active');
           })
           .finally(() => el.classList.remove('loading'));
-      });
+      };
+
+      // langSel.value = browserLang;
+      el.addEventListener("click", eventHandler);
+      el.addEventListener("keydown", eventHandler);
+      // el.addEventListener("change", eventHandler);
     }
   }
 

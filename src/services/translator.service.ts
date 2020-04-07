@@ -8,7 +8,7 @@ export interface TranslatorConfig {
 }
 
 const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
-  persist: false,
+  persist: true,
   languages: ["en", "it"],
   defaultLanguage: "en",
   detectLanguage: true,

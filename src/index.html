@@ -11,12 +11,9 @@
     <meta name="description"
         content="I'm a mobile and web developer with an eye for graphics and design, and who loves to work using the best practices. " />
     <title>Frank Mosca | Developer</title>
-
-    <!--<style><%= compilation.assets[htmlWebpackPlugin.files.chunks.criticalCss.css[0]].source() %>
-    </!--<style>-->
 </head>
 <body>
-    <section class="main-hero px-3" data-sal="fade">
+    <section class="main-hero px-3">
         <div class="container">
             <header class="nav-header flex-between" data-sal="fade" data-sal-delay="200">
                 <div class="logo"></div>
@@ -33,11 +30,11 @@
                     </li>
                 </ul>
 
-                <label class="ml-4 mr-2">
+                <label class="ml-4 mr-2" tabindex="0">
                     <input type="radio" name="lang-selector" alt="English" value="en" hidden /> <img width="24" height="24" src="./assets/svgs/gb.svg"
                         alt=""></option>
                 </label>
-                <label>
+                <label tabindex="0">
                     <input type="radio" name="lang-selector" alt="Italiano" value="it" hidden />
                     <img width="24" height="24" src="./assets/svgs/it.svg" alt="">
                 </label>
@@ -45,7 +42,7 @@
                 </div>
             </header>
 
-            <div class="main-hero-content">
+            <div class="main-hero-content parallax">
                 <h1 data-i18n="main.title" data-sal="slide-up" data-sal-delay="150">Hi,<br>I'm Frank!</h1>
                 <p class="subtitle my-4" data-i18n="main.subtitle" data-sal="slide-up" data-sal-delay="400">
                     I'm a mobile and web developer with an eye for graphics and design, and who loves to work using the best practices.
@@ -63,7 +60,11 @@
                 </div>
             </div>
         </div>
-        <div id="particles-js"></div>
+        <img class="particles-group parallax" src="./assets/svgs/confetti/1.svg" data-rellax-speed="-7" data-sal="fade">
+        <img class="particles-group parallax" src="./assets/svgs/confetti/2.svg" data-rellax-speed="-5" data-sal="fade" data-sal-delay="200">
+        <img class="particles-group parallax" src="./assets/svgs/confetti/3.svg" data-rellax-speed="-4" data-sal="fade" data-sal-delay="400">
+        <img class="particles-group parallax" src="./assets/svgs/confetti/4.svg" data-rellax-speed="-2" data-sal="fade" data-sal-delay="600">
+
     </section>
 
     <section id="experiences">
@@ -85,7 +86,7 @@
                     <div class="product-title" data-sal="fade">
                         <div>
                             <h3>Hair Express</h3>
-                            <div class="product-title-line" style="background-color: #EFCF63;" data-sal="flip-up"></div>
+                            <div class="product-title-line" style="background-color: #EFCF63;" data-sal="flip-up" data-sal-duration="2000"></div>
                         </div>
                     </div>
 
@@ -122,7 +123,7 @@
                     <div class="product-title" data-sal="fade">
                         <div>
                             <h3>TBoxChain</h3>
-                            <div class="product-title-line" style="background-color: #00C6DE;" data-sal="flip-up"></div>
+                            <div class="product-title-line" style="background-color: #00C6DE;" data-sal="flip-up" data-sal-duration="2000"></div>
                         </div>
                     </div>
 
@@ -156,7 +157,7 @@
                     <div class="product-title" data-sal="fade">
                         <div>
                             <h3>SmartXP</h3>
-                            <div class="product-title-line" style="background-color: #EB443B;" data-sal="flip-up"></div>
+                            <div class="product-title-line" style="background-color: #EB443B;" data-sal="flip-up" data-sal-duration="2000"></div>
                         </div>
                     </div>
                     <div data-sal="fade" data-sal-delay="300">
@@ -220,7 +221,7 @@
     </section>-->
 
     <section id="contact">
-        <div class="contact-card" data-sal="fade">
+        <div class="contact-card parallax" data-rellax-percentage="0.1" data-sal-duration="1000" data-sal="slide-up">
             <div class="row">
                 <div class="col-lg-4 flex-center">
                     <img src="./assets/avatar.jpg" class="photo-avatar" alt="Francesco Mosca" data-sal-delay="200" data-sal="zoom-in">

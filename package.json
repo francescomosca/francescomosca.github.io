@@ -14,7 +14,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "^4.4.1",
-    "particles.js": "^2.0.0",
+    "rellax": "^1.12.1",
     "sal.js": "^0.7.4",
     "typeface-rubik": "0.0.72"
   },
