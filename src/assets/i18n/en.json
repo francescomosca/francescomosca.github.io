@@ -6,7 +6,7 @@
 	},
 	"main": {
 		"title": "Hi,<br>I'm Frank!",
-		"subtitle": "I'm a mobile and web developer with an eye for graphics and design, and who loves to work using the best practices."
+		"subtitle": "I'm a mobile and web developer with an eye for graphics and design, who loves to work using the best practices."
 	},
 	"experiences": {
 		"heading": {
@@ -14,14 +14,14 @@
 			"subtitle": "Project that I worked on"
 		},
 		"hair_express": {
-			"desc": "I entirely designed and worked on this hybrid mobile app for a growing hair salon."
+			"desc": "I entirely designed and worked on this hybrid mobile app for a growing hair salon, mainly useful to manage appointments."
 		},
 		"tools_title": "Technologies and tools used",
 		"tboxchain": {
-			"desc": "experiences.tboxchain.desc"
+			"desc": "TBoxChain is a mobile app that takes care of certifying reviews, and that focuses on two keywords: Proof of location and Proof of identity."
 		},
 		"smartxp": {
-			"desc": "experiences.smartxp.desc"
+			"desc": "SmartXP is a multi-company dashboard that allows to manage data for the mobile apps of a sports society."
 		}
 	},
 	"companies": {
