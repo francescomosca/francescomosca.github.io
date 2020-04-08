@@ -14,12 +14,14 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "^4.4.1",
+    "lozad": "^1.14.0",
     "rellax": "^1.12.1",
     "sal.js": "^0.7.4",
     "typeface-rubik": "0.0.72"
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.2",
+    "@types/lozad": "^1.9.0",
     "@types/mini-css-extract-plugin": "^0.8.0",
     "@types/node": "^12.12.34",
     "clean-webpack-plugin": "^3.0.0",

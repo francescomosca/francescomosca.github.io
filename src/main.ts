@@ -4,6 +4,7 @@ import { $, isDevMode } from './utils';
 import { TranslatorService } from "./services/translator.service";
 import Rellax from 'rellax';
 import sal from 'sal.js';
+import lozad from 'lozad';
 
 export class MainApp {
 
@@ -12,12 +13,14 @@ export class MainApp {
   ) {
     this.initTranslations();
 
-    sal({ 
+    // Animation on scroll
+    sal({
       threshold: 0.4,
-      once: true 
+      once: true
     });
 
-    const rellax = new Rellax('.parallax', {
+    // Parallax
+    new Rellax('.parallax', {
       speed: 1,
       center: false,
       wrapper: null,
@@ -25,6 +28,13 @@ export class MainApp {
       vertical: true,
       horizontal: false
     });
+
+    // Lazy-loading for DOM elements
+    const observer = lozad('[lazyload]', {
+      rootMargin: '10px 0px', // syntax similar to that of CSS Margin
+      threshold: 0.1 // ratio of element convergence
+    });
+    observer.observe();
 
     // console.log(particlesJsConfig);
     // window['particlesJS']('particles-js', particlesJsConfig);

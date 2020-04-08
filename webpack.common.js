@@ -37,7 +37,7 @@ module.exports = {
           loader: 'html-loader',
           options: {
             ignoreCustomFragments: [/<%=.*%>/],
-            attrs: [':data-src']
+            attrs: [/* ':data-src' */]
           }
         }
       },
