@@ -11,14 +11,14 @@
 	"experiences": {
 		"heading": {
 			"title": "Experiences",
-			"subtitle": "Project that I worked on"
+			"subtitle": "Projects I worked on"
 		},
 		"hair_express": {
-			"desc": "I entirely designed and worked on this hybrid mobile app for a growing hair salon, mainly useful to manage appointments."
+			"desc": "I entirely designed and developed a hybrid mobile app for a hair salon. It's mainly useful to manage appointments."
 		},
 		"tools_title": "Technologies and tools used",
 		"tboxchain": {
-			"desc": "TBoxChain is a mobile app that takes care of certifying reviews, and that focuses on two keywords: Proof of location and Proof of identity."
+			"desc": "TBoxChain is a mobile app that takes care of certifying reviews. It focuses on two keywords: Proof of location and Proof of identity."
 		},
 		"smartxp": {
 			"desc": "SmartXP is a multi-company dashboard that allows to manage data for the mobile apps of a sports society."
@@ -27,12 +27,12 @@
 	"companies": {
 		"heading": {
 			"title": "Companies",
-			"subtitle": "Companies that I have worked with"
+			"subtitle": "Companies I have worked with"
 		}
 	},
 	"contact": {
 		"title": "Contact me!",
-		"subtitle": "Feel free to contact me. I'm available to discussions about your project or for a work proposal.",
+		"subtitle": "Feel free to contact me. I'm available for a work proposal or to talk about your project.",
 		"send_email": "send me an email"
 	},
 	"or": "or",
