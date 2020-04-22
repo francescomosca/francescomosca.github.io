@@ -31,8 +31,8 @@ export class MainApp {
 
     // Lazy-loading for DOM elements
     const observer = lozad('[lazyload]', {
-      rootMargin: '10px 0px', // syntax similar to that of CSS Margin
-      threshold: 0.1 // ratio of element convergence
+      rootMargin: '96px 0px', // syntax similar to that of CSS Margin
+      threshold: 0.2 // ratio of element convergence
     });
     observer.observe();
 
@@ -43,7 +43,7 @@ export class MainApp {
 
   async initTranslations() {
     // const browserLang = this.translatorServ.detectLanguage();
-    const lang = localStorage.getItem('language') || 'en';
+    const lang = this.translatorServ.detectLanguage() || 'en';
     await this.translatorServ.load(lang);
 
     const langSel: HTMLInputElement[] = <any>document.querySelectorAll("[name=\"lang-selector\"]");

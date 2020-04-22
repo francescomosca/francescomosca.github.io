@@ -34,9 +34,11 @@ export class TranslatorService {
     if (!this._options.detectLanguage) {
       return this._options.defaultLanguage;
     }
-
-    const stored = localStorage.getItem("language");
-    if (this._options.persist && stored) return stored;
+    
+    if (this._options.persist) {
+      const stored = localStorage.getItem("language");
+      if (stored) return stored;
+    }
 
     const lang = navigator.languages ? navigator.languages[0] : navigator.language;
     return lang.substr(0, 2);

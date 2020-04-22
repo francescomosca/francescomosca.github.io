@@ -1,5 +1,6 @@
 const { ContextReplacementPlugin } = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const glob = require('glob')
@@ -10,6 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
+  views: path.join(__dirname, 'src', 'views'),
   style: path.resolve(__dirname, 'src', "style.scss"),
 }
 
@@ -58,7 +60,16 @@ module.exports = {
             },
           },
           "css-loader",
-          'sass-loader',
+          {
+            loader: 'resolve-url-loader',
+            // options: {...}
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
         ],
       },
       {
@@ -122,16 +133,7 @@ module.exports = {
   plugins: [
     // new ContextReplacementPlugin(/pages/, '*.controller.(ts|js)'),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: PATHS.src + '/index.html',
-      filename: './index.html', //relative to root of the application      showErrors: true,
-      hash: true,
-      minify: {
-        removeComments: true,
-      },
-      favicon: PATHS.src + '/assets/favicon.ico',
-
-    }),
+    ...getHWPConfig(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
@@ -169,3 +171,38 @@ module.exports = {
       // "ParticlesJs": "./node_modules/particles.js/particles.js"
   }
 };
+
+function getHWPConfig() {
+  let data = [];
+  const isMultiPage = fs.existsSync(PATHS.views) && fs.readdirSync(PATHS.views).length;
+  if (isMultiPage) {
+    const viewsList = fs.readdirSync(PATHS.views);
+    viewsList.forEach(viewFileName => data.push(
+      new HtmlWebpackPlugin({
+        template: path.join(PATHS.views, viewFileName),
+        filename: viewFileName, //relative to root of the application
+        hash: true,
+        minify: {
+          removeComments: true,
+        },
+        favicon: path.join(PATHS.src, 'assets', 'favicon.ico'),
+
+      }),
+    ))
+  } else {
+    data.push(
+      new HtmlWebpackPlugin({
+        template: path.join(PATHS.src, 'index.html'),
+        filename: 'index.html', //relative to root of the application
+        hash: true,
+        minify: {
+          removeComments: true,
+        },
+        favicon: path.join(PATHS.src, 'assets', 'favicon.ico'),
+
+      })
+    );
+  }
+
+  return data;
+}
