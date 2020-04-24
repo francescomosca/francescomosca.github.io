@@ -4,14 +4,16 @@ export interface TranslatorConfig {
   defaultLanguage: string,
   detectLanguage: boolean,
   filesLocation: string,
+  attributeName: string
 }
 
 const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
-  persist: false,
+  persist: true,
   languages: ["en", "it"],
   defaultLanguage: "en",
   detectLanguage: true,
-  filesLocation: "/assets/i18n",
+  filesLocation: "assets/i18n",
+  attributeName: "data-i18n"
 };
 
 /** My updated version of simple-translator for TypeScript.
@@ -20,10 +22,9 @@ export class TranslatorService {
   private _elements; // : HTMLElement[] | NodeListOf<Element>;
   private _cache = new Map();
 
-
   constructor(private _options: TranslatorConfig = TRANSLATOR_DEFAULT_CONFIG) {
     this._options = { ...TRANSLATOR_DEFAULT_CONFIG, ..._options };
-    this._elements = document.querySelectorAll("[data-i18n]");
+    this._elements = document.querySelectorAll(`[${this._options.attributeName}]`);
 
     if (this._options.defaultLanguage) this._getResource(this._options.defaultLanguage);
   }
@@ -32,9 +33,11 @@ export class TranslatorService {
     if (!this._options.detectLanguage) {
       return this._options.defaultLanguage;
     }
-
-    const stored = localStorage.getItem("language");
-    if (this._options.persist && stored) return stored;
+    
+    if (this._options.persist) {
+      const stored = localStorage.getItem("language");
+      if (stored) return stored;
+    }
 
     const lang = navigator.languages ? navigator.languages[0] : navigator.language;
     return lang.substr(0, 2);
@@ -88,7 +91,7 @@ export class TranslatorService {
     if (!text && text !== '' && this._options.defaultLanguage) {
       let fallbackTranslation = JSON.parse(
         this._cache.get(this._options.defaultLanguage)
-      );
+        );
 
       text = this._getValueFromJSON(key, fallbackTranslation);
     }

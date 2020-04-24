@@ -1,0 +1,38 @@
+{
+	"links": {
+		"experiences": "links.experiences",
+		"contact_me": "links.contact_me"
+	},
+	"main": {
+		"title": "main.title",
+		"subtitle": "main.subtitle"
+	},
+	"experiences": {
+		"heading": {
+			"title": "experiences.heading.title",
+			"subtitle": "experiences.heading.subtitle"
+		},
+		"hair_express": {
+			"desc": "experiences.hair_express.desc"
+		},
+		"tools_title": "experiences.tools_title",
+		"tboxchain": {
+			"desc": "experiences.tboxchain.desc"
+		},
+		"smartxp": {
+			"desc": "experiences.smartxp.desc"
+		}
+	},
+	"companies": {
+		"heading": {
+			"title": "companies.heading.title",
+			"subtitle": "companies.heading.subtitle"
+		}
+	},
+	"contact": {
+		"title": "contact.title",
+		"subtitle": "contact.subtitle",
+		"send_email": "contact.send_email"
+	},
+	"or": "or"
+}

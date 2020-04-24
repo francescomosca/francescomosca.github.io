@@ -2,7 +2,9 @@
 import './style.scss';
 import { $, isDevMode } from './utils';
 import { TranslatorService } from "./services/translator.service";
-// import 'particles.js';
+import Rellax from 'rellax';
+import sal from 'sal.js';
+import lozad from 'lozad';
 
 export class MainApp {
 
@@ -11,24 +13,48 @@ export class MainApp {
   ) {
     this.initTranslations();
 
-    // router.renderPage('main');
+    // Animation on scroll
+    sal({
+      threshold: 0.4,
+      once: true
+    });
+
+    // Parallax
+    new Rellax('.parallax', {
+      speed: 1,
+      center: false,
+      wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false
+    });
+
+    // Lazy-loading for DOM elements
+    const observer = lozad('[lazyload]', {
+      rootMargin: '96px 0px', // syntax similar to that of CSS Margin
+      threshold: 0.2 // ratio of element convergence
+    });
+    observer.observe();
 
     // console.log(particlesJsConfig);
     // window['particlesJS']('particles-js', particlesJsConfig);
+    // router.renderPage('main');
   }
 
-  initTranslations() {
+  async initTranslations() {
     // const browserLang = this.translatorServ.detectLanguage();
-    this.translatorServ.load('en');
+    const lang = this.translatorServ.detectLanguage() || 'en';
+    await this.translatorServ.load(lang);
 
     const langSel: HTMLInputElement[] = <any>document.querySelectorAll("[name=\"lang-selector\"]");
-    console.log(langSel);
+    // console.log(langSel);
 
     for (const el of langSel) {
-      if (el.value === 'en') el.classList.add('active');
-      // langSel.value = browserLang;
-      el.addEventListener("change", (ev: any) => {
-        const newLang = ev.target.value;
+      if (el.value === lang) el.classList.add('active');
+
+      const eventHandler = (ev: MouseEvent | KeyboardEvent | Event) => {
+        // if ((<KeyboardEvent>ev).keyCode && (<KeyboardEvent>ev).keyCode == 32) ev.preventDefault();
+        const newLang = (<any>ev).target.value;
         el.classList.add('loading');
         this.translatorServ.load(newLang)
           .then(() => {
@@ -36,7 +62,12 @@ export class MainApp {
             el.classList.add('active');
           })
           .finally(() => el.classList.remove('loading'));
-      });
+      };
+
+      // langSel.value = browserLang;
+      el.addEventListener("click", eventHandler);
+      el.addEventListener("keydown", eventHandler);
+      // el.addEventListener("change", eventHandler);
     }
   }
 

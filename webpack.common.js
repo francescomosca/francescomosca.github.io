@@ -1,5 +1,6 @@
 const { ContextReplacementPlugin } = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const glob = require('glob')
@@ -10,6 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
+  views: path.join(__dirname, 'src', 'views'),
   style: path.resolve(__dirname, 'src', "style.scss"),
 }
 
@@ -37,7 +39,7 @@ module.exports = {
           loader: 'html-loader',
           options: {
             ignoreCustomFragments: [/<%=.*%>/],
-            attrs: [':data-src']
+            attrs: [/* ':data-src' */]
           }
         }
       },
@@ -54,11 +56,21 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               sourceMap: true,
+              esModule: true,
               hmr: process.env.NODE_ENV === 'development',
             },
           },
           "css-loader",
-          'sass-loader',
+          {
+            loader: 'resolve-url-loader',
+            // options: {...}
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
         ],
       },
       {
@@ -82,13 +94,6 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 8192
-        }
-      },
-      {
         test: /\.ico(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader'
       },
@@ -100,17 +105,17 @@ module.exports = {
           limit: '10000',
           mimetype: 'application/svg+xml'
         }
-      }, 
+      },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [{
-            loader: 'file-loader',
-            options: {
-                name: '[name].[ext]',
-                outputPath: 'assets/'
-            }
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/'
+          }
         }]
-    },      
+      },
       /* {
         test: /\.json$/,
         loader: 'json-loader'
@@ -122,16 +127,7 @@ module.exports = {
   plugins: [
     // new ContextReplacementPlugin(/pages/, '*.controller.(ts|js)'),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: PATHS.src + '/index.html',
-      filename: './index.html', //relative to root of the application      showErrors: true,
-      hash: true,
-      minify: {
-        removeComments: true,
-      },
-      favicon: PATHS.src + '/assets/favicon.ico',
-
-    }),
+    ...getHWPConfig(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
@@ -141,11 +137,12 @@ module.exports = {
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      whitelist: () => ['sal-animate'],
     }),
     // new HTMLInlineCSSWebpackPlugin(),
     new CopyWebpackPlugin([
-      {from:'src/assets',to:'assets'} 
-    ]), 
+      { from: 'src/assets', to: 'assets' }
+    ]),
   ],
 
   optimization: {
@@ -165,6 +162,40 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
-      // "ParticlesJs": "./node_modules/particles.js/particles.js"
+    // "ParticlesJs": "./node_modules/particles.js/particles.js"
   }
 };
+
+function getHWPConfig() {
+  let data = [];
+  if (fs.existsSync(PATHS.views)) { // is multi-page
+    const viewsList = fs.readdirSync(PATHS.views).filter(viewFileName => viewFileName.endsWith('.html'));
+    viewsList.forEach(viewFileName => data.push(
+      new HtmlWebpackPlugin({
+        template: path.join(PATHS.views, viewFileName),
+        filename: viewFileName, //relative to root of the application
+        hash: true,
+        minify: {
+          removeComments: true,
+        },
+        favicon: path.join(PATHS.src, 'assets', 'favicon.ico'),
+
+      }),
+    ))
+  } else {
+    data.push(
+      new HtmlWebpackPlugin({
+        template: path.join(PATHS.src, 'index.html'),
+        filename: 'index.html', //relative to root of the application
+        hash: true,
+        minify: {
+          removeComments: true,
+        },
+        favicon: path.join(PATHS.src, 'assets', 'favicon.ico'),
+
+      })
+    );
+  }
+
+  return data;
+}
