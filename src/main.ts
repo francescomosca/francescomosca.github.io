@@ -47,7 +47,7 @@ export class MainApp {
     await this.translatorServ.load(lang);
 
     const langSel: HTMLInputElement[] = <any>document.querySelectorAll("[name=\"lang-selector\"]");
-    console.log(langSel);
+    // console.log(langSel);
 
     for (const el of langSel) {
       if (el.value === lang) el.classList.add('active');

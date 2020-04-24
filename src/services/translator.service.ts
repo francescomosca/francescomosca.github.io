@@ -12,7 +12,7 @@ const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
   languages: ["en", "it"],
   defaultLanguage: "en",
   detectLanguage: true,
-  filesLocation: "/assets/i18n",
+  filesLocation: "assets/i18n",
   attributeName: "data-i18n"
 };
 
@@ -21,7 +21,6 @@ const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
 export class TranslatorService {
   private _elements; // : HTMLElement[] | NodeListOf<Element>;
   private _cache = new Map();
-
 
   constructor(private _options: TranslatorConfig = TRANSLATOR_DEFAULT_CONFIG) {
     this._options = { ...TRANSLATOR_DEFAULT_CONFIG, ..._options };

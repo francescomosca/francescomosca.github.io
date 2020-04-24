@@ -56,6 +56,7 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               sourceMap: true,
+              esModule: true,
               hmr: process.env.NODE_ENV === 'development',
             },
           },
@@ -93,13 +94,6 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 8192
-        }
-      },
-      {
         test: /\.ico(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader'
       },
@@ -115,13 +109,13 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [{
-            loader: 'file-loader',
-            options: {
-                name: '[name].[ext]',
-                outputPath: 'assets/'
-            }
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/'
+          }
         }]
-    },
+      },
       /* {
         test: /\.json$/,
         loader: 'json-loader'
@@ -143,11 +137,11 @@ module.exports = {
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelist: function() { return ['sal-animate']},
+      whitelist: () => ['sal-animate'],
     }),
     // new HTMLInlineCSSWebpackPlugin(),
     new CopyWebpackPlugin([
-      {from:'src/assets',to:'assets'}
+      { from: 'src/assets', to: 'assets' }
     ]),
   ],
 
@@ -168,15 +162,14 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
-      // "ParticlesJs": "./node_modules/particles.js/particles.js"
+    // "ParticlesJs": "./node_modules/particles.js/particles.js"
   }
 };
 
 function getHWPConfig() {
   let data = [];
-  const isMultiPage = fs.existsSync(PATHS.views) && fs.readdirSync(PATHS.views).length;
-  if (isMultiPage) {
-    const viewsList = fs.readdirSync(PATHS.views);
+  if (fs.existsSync(PATHS.views)) { // is multi-page
+    const viewsList = fs.readdirSync(PATHS.views).filter(viewFileName => viewFileName.endsWith('.html'));
     viewsList.forEach(viewFileName => data.push(
       new HtmlWebpackPlugin({
         template: path.join(PATHS.views, viewFileName),
