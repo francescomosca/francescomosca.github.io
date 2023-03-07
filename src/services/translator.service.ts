@@ -12,7 +12,7 @@ const TRANSLATOR_DEFAULT_CONFIG: TranslatorConfig = {
   languages: ["en", "it"],
   defaultLanguage: "en",
   detectLanguage: true,
-  filesLocation: "assets/i18n",
+  filesLocation: "./i18n",
   attributeName: "data-i18n"
 };
 
@@ -33,7 +33,7 @@ export class TranslatorService {
     if (!this._options.detectLanguage) {
       return this._options.defaultLanguage;
     }
-    
+
     if (this._options.persist) {
       const stored = localStorage.getItem("language");
       if (stored) return stored;
