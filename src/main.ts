@@ -16,7 +16,8 @@ export class MainApp {
     // Animation on scroll
     sal({
       threshold: 0.4,
-      once: true
+      once: true,
+      root: null
     });
 
     // Parallax

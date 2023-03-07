@@ -19,6 +19,6 @@ parser
 
 var translations = parser.get().en.translation;
 
-if (!fs.existsSync('../src/assets/i18n')) fs.mkdirSync('../src/assets/i18n');
+if (!fs.existsSync('../static/i18n')) fs.mkdirSync('../static/i18n');
 
-fs.writeFileSync('../src/assets/i18n/template.json', JSON.stringify(translations, null, "\t"));
+fs.writeFileSync('../static/i18n/template.json', JSON.stringify(translations, null, "\t"));
